@@ -1,7 +1,6 @@
 from src.pom.LoginPage import LoginPage
 from src.pom.ClientsPage import ClientPage
 from src.pom.NewClientPage import NewClientPage
-from tests.ui import TestData
 from src.common.Logger import logger
 import pytest
 
@@ -9,13 +8,13 @@ import pytest
 @pytest.mark.usefixtures("setup")
 class TestAdvisorPage:
     @pytest.mark.uiTests
-    def test_create_new_client(self):
+    def test_create_new_client(self, setup_method):
         logger.info("Initializing the login page object")
         login_page = LoginPage(self.page)
 
         logger.info("Entering username and password")
-        login_page.enter_username(TestData.USER_NAME)
-        login_page.enter_password(TestData.PASSWORD)
+        login_page.enter_username(setup_method.get("user_name"))
+        login_page.enter_password(setup_method.get("password"))
 
         logger.info("Clicking the login button")
         login_page.click_login()
@@ -23,8 +22,8 @@ class TestAdvisorPage:
         # Wait for the firm selection dropdown to appear, indicating that login was successful
         self.page.wait_for_selector(login_page.org_select)
 
-        logger.info(f"Selecting the firm: {TestData.FIRM}")
-        login_page.select_firm(TestData.FIRM)
+        logger.info(f"Selecting the firm: {setup_method.get("firm")}")
+        login_page.select_firm(setup_method.get("firm"))
         logger.info("Clicking the login button after selecting the firm")
         login_page.click_login()
 
@@ -46,4 +45,4 @@ class TestAdvisorPage:
         logger.info("Verifying that the new client page is loaded")
         assert new_client_page.is_page_loaded(), (f"new client page doesn't appear, "
                                                   f"please check if locators or url needs to be modified")
-        logger.info("New client page loaded successfully.")
+        logger.info("New client page loaded successfully")

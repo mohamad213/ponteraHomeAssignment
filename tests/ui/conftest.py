@@ -25,3 +25,14 @@ def setup(browser_context, request):
 
 def install_playwright():
     subprocess.run(["playwright", "install"], check=True)
+
+
+@pytest.fixture(scope="function", autouse=True)
+def setup_method():
+    # This method is called before each test
+    test_data = {
+        "user_name": "Maayan+Tester1@feex.com",
+        "password": "Advisor0103Buckley",
+        "firm": "QA Advisors"
+    }
+    yield test_data
