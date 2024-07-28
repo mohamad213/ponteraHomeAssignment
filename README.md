@@ -27,3 +27,9 @@ To ensure the necessary browsers are installed after setting up the Python envir
 
    * `playwright install`
 
+
+5. To run the tests run the following command:
+   
+   `pytest -v -m "apiTests or uiTests" `
+   
+   note: Question1 and Question2 tests marked as "apiTests", Question3-bonus test marked as "uiTests"
