@@ -1,7 +1,10 @@
-# ponteraHomeAssignment
+# pontera Home Assignment
 
 Instructions for Users
 To ensure the necessary browsers are installed after setting up the Python environment, users should run the post_install.py script after installing the requirements. Here's how:
+### **- Python 3.12 or higher**
+
+
 1. Create a Virtual Environment
 
     `python -m venv myVenv`
